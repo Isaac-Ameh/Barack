@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans:regular,400,600,700');
+@font-face {
+  font-family: 'Garamond';
+  src: url('//static.showit.co/file/M88YUmYpgg2HNwK-zZgDxg/shared/garamond_premier_pro_regular.woff') format('woff');
+}
+@font-face {
+  font-family: 'Garamond Italic';
+  src: url('//static.showit.co/file/9vDk_CH2kb4fX21F2g--fA/274575/ebgaramond-italic-variablefont_wght.woff') format('woff');
+}
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Josefin Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Garamond", Georgia, serif;
+  --font-italic: "Garamond Italic", Georgia, serif;
+
+  /* Brand Palette (Henry's Official Colors) */
+  --color-espresso: #4C392D;
+  --color-mocha: #9E8472;
+  --color-stone: #A89D92;
+  --color-linen: #DDDAD3;
+  --color-cream: #F9F0EA;
+
+  /* Legacy component aliases remapped to new palette */
+  --color-primary: var(--color-mocha);
+  --color-primary-dark: var(--color-espresso);
+  --color-primary-light: var(--color-cream);
+  
+  --color-charcoal: var(--color-espresso);
+  --color-dark: var(--color-espresso);
+  --color-gray-dark: var(--color-espresso);
+  --color-gray-medium: var(--color-stone);
+  --color-gray-light: var(--color-linen);
+  --color-beige-light: var(--color-cream);
+  --color-beige-medium: var(--color-linen);
+  --color-brown-dark: var(--color-espresso);
+  
+  --color-teal-primary: var(--color-mocha);
+  --color-teal-dark: var(--color-espresso);
+  --color-teal-light: var(--color-cream);
+  --color-gray-body: var(--color-stone);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply font-sans text-stone antialiased overflow-x-hidden;
+    background:
+      radial-gradient(circle at top left, rgba(76, 57, 45, 0.06), transparent 24%),
+      radial-gradient(circle at top right, rgba(249, 240, 234, 0.9), transparent 28%),
+      linear-gradient(180deg, #F9F0EA 0%, #DDDAD3 48%, #F9F0EA 100%);
+  }
+  h1 { @apply font-display text-[48px] md:text-[80px] lg:text-[100px] font-semibold leading-[0.92] tracking-[-0.04em] text-espresso; }
+  h2 { @apply font-display text-[38px] md:text-[56px] lg:text-[64px] font-semibold leading-[0.96] tracking-[-0.04em] text-espresso; }
+  h3 { @apply font-display text-[30px] md:text-[36px] font-semibold leading-[1.05] tracking-[-0.03em] text-espresso; }
+  h4 { @apply font-display text-[24px] md:text-[26px] font-medium leading-[1.15] text-espresso; }
+  
+  p { @apply text-[16px] md:text-[18px] leading-[1.6] text-stone; }
+  p.large { @apply text-[18px] md:text-[22px] leading-[1.5] tracking-tight; }
+  p.small { @apply text-[14px] leading-[1.5] tracking-wide; }
+}
+
+@layer utilities {
+  .text-fluid-h1 {
+    font-size: clamp(3rem, 10vw, 8rem);
+  }
+  .glass {
+    @apply bg-cream/80 backdrop-blur-xl border border-linen/40 shadow-[0_8px_32px_0_rgba(158,132,114,0.07)];
+  }
+  .glass-dark {
+    @apply bg-espresso/90 backdrop-blur-xl border border-cream/10 shadow-xl;
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+  .smooth-transition {
+    @apply transition-all duration-500;
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+  }
+  .premium-surface {
+    @apply bg-cream/75 backdrop-blur-2xl border border-cream/60 shadow-[0_24px_80px_rgba(76,57,45,0.08)];
+  }
+  .premium-panel {
+    @apply bg-cream rounded-lg border border-linen shadow-[0_24px_90px_rgba(76,57,45,0.08)];
+  }
+  .premium-panel-dark {
+    @apply bg-espresso/85 backdrop-blur-xl border border-cream/10 shadow-[0_30px_120px_rgba(76,57,45,0.28)];
+  }
+  .image-frame {
+    @apply overflow-hidden rounded-lg border border-cream/15 bg-espresso shadow-[0_30px_120px_rgba(76,57,45,0.2)];
+  }
+  .image-overlay {
+    @apply absolute inset-0 bg-[linear-gradient(180deg,rgba(76,57,45,0.05)_0%,rgba(76,57,45,0.35)_100%)];
+  }
+  .section-shell {
+    @apply relative overflow-hidden;
+  }
+  .soft-grid {
+    background-image:
+      linear-gradient(rgba(76,57,45,0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(76,57,45,0.045) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+  .glow-orb {
+    @apply absolute rounded-full blur-3xl pointer-events-none;
+  }
+  .bg-texture {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239E8472' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+}
+
+@keyframes infinite-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.animate-infinite-scroll {
+  animation: infinite-scroll 40s linear infinite;
+}
