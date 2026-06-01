@@ -1,9 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import { motion } from 'motion/react';
 
-const VIDEO_PRIMARY = "https://assets.mixkit.co/videos/preview/mixkit-speaker-at-a-business-conference-34289-large.mp4";
-const VIDEO_SECONDARY = "https://assets.mixkit.co/videos/preview/mixkit-business-woman-presenting-a-project-on-a-screen-40742-large.mp4";
-const VIDEO_TERTIARY = "https://assets.mixkit.co/videos/preview/mixkit-corporate-slide-presentation-in-a-large-conference-hall-40348-large.mp4";
+const VIDEO_PRIMARY = "https://assets.mixkit.co/videos/preview/mixkit-businessman-working-at-night-4836-large.mp4";
+const VIDEO_SECONDARY = "https://assets.mixkit.co/videos/preview/mixkit-man-under-multicolored-lights-1237-large.mp4";
 
 const PORTRAIT_URL = "/assets/henry_profile.png";
 const FALLBACK_PORTRAIT = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=600";
@@ -41,11 +40,13 @@ export default function AboutHero() {
 
   return (
     <section
-      className="relative w-full overflow-hidden"
+      className="relative w-full"
       style={{
         height: '100vh',
         minHeight: '700px',
-        backgroundColor: '#2a1e17',
+        backgroundColor: '#0f0a07',
+        overflow: 'visible',
+        zIndex: 1,
       }}
     >
       {/* Layer 0 — Background video */}
@@ -55,14 +56,14 @@ export default function AboutHero() {
         muted
         loop
         playsInline
-        className="absolute inset-0 w-full h-full object-cover z-0"
+        className="absolute inset-0 w-full h-full object-cover"
         style={{
-          filter: 'grayscale(100%) brightness(0.28)',
+          zIndex: 0,
+          filter: 'grayscale(100%) brightness(0.25)',
         }}
       >
         <source src={VIDEO_PRIMARY} type="video/mp4" />
         <source src={VIDEO_SECONDARY} type="video/mp4" />
-        <source src={VIDEO_TERTIARY} type="video/mp4" />
       </video>
 
       {/* Layer 1 — Espresso Overlay A (directional gradient) */}
@@ -71,10 +72,10 @@ export default function AboutHero() {
         style={{
           background: `linear-gradient(
             105deg,
-            rgba(76,57,45,0.55) 0%,
-            rgba(76,57,45,0.65) 30%,
-            rgba(76,57,45,0.82) 60%,
-            rgba(76,57,45,0.90) 100%
+            rgba(15,10,7,0.75) 0%,
+            rgba(15,10,7,0.80) 30%,
+            rgba(15,10,7,0.90) 60%,
+            rgba(15,10,7,0.96) 100%
           )`,
         }}
       />
@@ -85,10 +86,10 @@ export default function AboutHero() {
         style={{
           background: `linear-gradient(
             to bottom,
-            rgba(76,57,45,0.35) 0%,
-            transparent 20%,
+            rgba(15,10,7,0.55) 0%,
+            transparent 25%,
             transparent 70%,
-            rgba(76,57,45,0.5) 100%
+            rgba(15,10,7,0.6) 100%
           )`,
         }}
       />
@@ -98,29 +99,48 @@ export default function AboutHero() {
         initial={{ y: 60, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 1.0, delay: 0.3, ease: easing }}
-        className="absolute left-1/2 -translate-x-1/2 z-10 bg-[#F9F0EA] rounded-none overflow-hidden"
+        className="absolute left-1/2 -translate-x-1/2 z-10 bg-[#F9F0EA]"
         style={{
-          top: '42%',
-          // custom responsive width via inline style/tailwind classes
+          top: '52%',
           width: 'clamp(280px, 85vw, 480px)',
+          height: '75vh',
+          minHeight: '520px',
           boxShadow: 'none',
+          position: 'absolute',
+          borderRadius: '0px',
+          overflow: 'hidden',
+          marginBottom: '-1px',
+          clipPath: 'inset(0 0 15% 0)',
         }}
       >
         <img
           src={PORTRAIT_URL}
           alt="Henry Chibundu Okeke"
+          className="select-none text-center"
           style={{
-            width: '100%',
-            height: '58vh',
-            minHeight: '480px',
-            objectFit: 'cover',
-            objectPosition: 'top center',
+            position: 'absolute',
+            bottom: 0,
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: '110%',
+            height: 'auto',
+            maxWidth: 'none',
+            objectFit: 'contain',
+            objectPosition: 'bottom center',
             display: 'block',
           }}
           onError={(e) => {
             const t = e.target as HTMLImageElement;
             t.onerror = null;
             t.src = FALLBACK_PORTRAIT;
+            t.style.position = 'relative';
+            t.style.bottom = 'auto';
+            t.style.left = 'auto';
+            t.style.transform = 'none';
+            t.style.width = '100%';
+            t.style.height = '100%';
+            t.style.objectFit = 'cover';
+            t.style.objectPosition = 'center 15%';
           }}
         />
       </motion.div>
@@ -132,7 +152,7 @@ export default function AboutHero() {
         transition={{ duration: 0.9, delay: 0.5, ease: easing }}
         className="absolute left-1/2 -translate-x-1/2 w-full text-center z-20 pointer-events-none select-none"
         style={{
-          top: '28%',
+          top: '30%',
           whiteSpace: 'nowrap',
         }}
       >
