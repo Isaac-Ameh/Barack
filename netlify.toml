@@ -1,5 +1,5 @@
 [build]
-  command = "npm rebuild && npx vite build --config vite.config.js"
+  command = "npm install --os=linux --cpu=x64 && npx vite build --config vite.config.js"
   publish = "dist"
   functions = "netlify/functions"
 
@@ -7,6 +7,6 @@
   node_bundler = "esbuild"
   included_files = []
 
-# Ensure Node 18+ for native fetch support in functions
+# Ensure Node 20+ for native fetch support and modern package compatibility
 [build.environment]
-  NODE_VERSION = "18"
+  NODE_VERSION = "20"

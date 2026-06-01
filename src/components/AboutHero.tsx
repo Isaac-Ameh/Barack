@@ -1,13 +1,44 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { motion } from 'motion/react';
 
-const VIDEO_URL = "https://cdn.pixabay.com/video/2022/10/17/135373-762403137_large.mp4";
+const VIDEO_PRIMARY = "https://assets.mixkit.co/videos/preview/mixkit-speaker-at-a-business-conference-34289-large.mp4";
+const VIDEO_SECONDARY = "https://assets.mixkit.co/videos/preview/mixkit-business-woman-presenting-a-project-on-a-screen-40742-large.mp4";
+const VIDEO_TERTIARY = "https://assets.mixkit.co/videos/preview/mixkit-corporate-slide-presentation-in-a-large-conference-hall-40348-large.mp4";
+
 const PORTRAIT_URL = "/assets/henry_profile.png";
 const FALLBACK_PORTRAIT = "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=600";
 
 const easing = [0.22, 1, 0.36, 1] as const;
 
 export default function AboutHero() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      // Force programmatic muted state (essential for Chrome, Safari, Edge autoplay permission)
+      video.muted = true;
+      video.defaultMuted = true;
+      video.setAttribute('muted', '');
+      video.setAttribute('playsinline', '');
+      
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch((err) => {
+          console.warn("Autoplay was initially prevented. Retrying on user interaction or DOM load...", err);
+          // Standard fallback to play on first document click/scroll if browser blocks it initially
+          const startVideo = () => {
+            video.play().catch(e => console.log("Manual play trigger failed:", e));
+            document.removeEventListener('click', startVideo);
+            document.removeEventListener('touchstart', startVideo);
+          };
+          document.addEventListener('click', startVideo);
+          document.addEventListener('touchstart', startVideo);
+        });
+      }
+    }
+  }, []);
+
   return (
     <section
       className="relative w-full overflow-hidden"
@@ -19,6 +50,7 @@ export default function AboutHero() {
     >
       {/* Layer 0 — Background video */}
       <video
+        ref={videoRef}
         autoPlay
         muted
         loop
@@ -28,7 +60,9 @@ export default function AboutHero() {
           filter: 'grayscale(100%) brightness(0.28)',
         }}
       >
-        <source src={VIDEO_URL} type="video/mp4" />
+        <source src={VIDEO_PRIMARY} type="video/mp4" />
+        <source src={VIDEO_SECONDARY} type="video/mp4" />
+        <source src={VIDEO_TERTIARY} type="video/mp4" />
       </video>
 
       {/* Layer 1 — Espresso Overlay A (directional gradient) */}
