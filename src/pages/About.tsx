@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Target, Eye } from 'lucide-react';
+import AboutHero from '../components/AboutHero';
 
 const easing = [0.22, 1, 0.36, 1] as const;
 
@@ -72,59 +73,7 @@ export function AboutPage() {
   return (
     <div className="w-full">
       {/* 1. ABOUT HERO (Cover Section) */}
-      <section className="relative min-h-[95vh] flex items-center overflow-hidden bg-black">
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="/assets/henry_profile.png" 
-            alt="Henry Okeke Chibundum" 
-            className="w-full h-full object-cover object-top opacity-70"
-            onError={(e) => {
-              (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=1200";
-            }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent z-10" />
-        </div>
-
-        <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-24 relative z-20 w-full pt-32 pb-20 md:pt-40 md:pb-32">
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="max-w-[950px] mx-auto lg:mx-0 text-center lg:text-left"
-          >
-            <span className="text-mocha font-bold tracking-[0.3em] md:tracking-[0.4em] uppercase text-[10px] md:text-[11px] mb-8 md:mb-10 block">THE ORIGIN STORY</span>
-            <h1 className="text-cream mb-8 md:mb-10 text-[3.2rem] sm:text-[5rem] lg:text-[7.5rem] xl:text-9xl font-bold leading-[0.9] md:leading-[0.85] tracking-tighter">
-              Your Inbox is a <span className="text-mocha italic font-serif font-light">Goldmine</span>. <br />
-              <span className="text-cream/40">I’m the Architect.</span>
-            </h1>
-            
-            <p className="text-base md:text-2xl lg:text-3xl text-cream/60 mb-12 md:mb-16 leading-snug md:leading-tight max-w-4xl mx-auto lg:mx-0 font-light tracking-tight px-4 sm:px-0">
-              I drive customer engagement by planning and optimizing campaign loops that convert silent subscribers into repeat buyers.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 md:gap-6 px-4 sm:px-0">
-              <a 
-                href="https://calendar.app.google/fe1MA1wgPoBre1SYA"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block bg-mocha text-cream px-8 md:px-12 py-5 md:py-6 rounded-full text-lg md:text-xl font-bold hover:bg-mocha-dark transition-all shadow-2xl shadow-mocha/30 text-center"
-              >
-                Work With Henry
-              </a>
-              <a 
-                href="#services"
-                className="inline-block bg-cream/5 backdrop-blur-xl border border-cream/20 text-cream px-8 md:px-12 py-5 md:py-6 rounded-full text-lg md:text-xl font-bold hover:bg-cream/10 transition-all text-center cursor-pointer"
-                onClick={(e) => {
-                  e.preventDefault();
-                  document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
-                }}
-              >
-                Explore My Services
-              </a>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      <AboutHero />
 
       {/* 2. "HOW I CAN HELP YOU" ACCORDION SECTION (bg-espresso - dark) */}
       <section className="py-24 md:py-40 px-6 bg-espresso text-cream relative overflow-hidden border-b border-linen/10" id="services">
