@@ -117,12 +117,11 @@ export default function AboutHero() {
           className="select-none text-center"
           style={{
             position: 'absolute',
-            top: '-12%', // Shift upwards to compensate for the large transparent top padding in the PNG
+            top: '0%', // Anchored to top boundaries of card
             left: '50%',
-            transform: 'translateX(-50%) scale(2.3)', // Scale up to match Shelby's visual hierarchy
-            transformOrigin: 'top center',
+            transform: 'translate(-50%, -14.5%) scale(2.4)', // Slightly lowered to guarantee absolute clearance from meet HENRY typography
             width: '100%',
-            height: '72vh',
+            height: '120vh', // Extended height so he bleeds all the way down through the transition panels
             objectFit: 'contain',
             objectPosition: 'center top',
             display: 'block',
