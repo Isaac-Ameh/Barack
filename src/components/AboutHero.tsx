@@ -44,7 +44,7 @@ export default function AboutHero() {
       style={{
         height: '100vh',
         minHeight: '700px',
-        backgroundColor: '#0f0a07',
+        backgroundColor: '#2a1e17',
         overflow: 'visible',
         zIndex: 1,
       }}
@@ -72,10 +72,10 @@ export default function AboutHero() {
         style={{
           background: `linear-gradient(
             105deg,
-            rgba(15,10,7,0.75) 0%,
-            rgba(15,10,7,0.80) 30%,
-            rgba(15,10,7,0.90) 60%,
-            rgba(15,10,7,0.96) 100%
+            rgba(76,57,45,0.55) 0%,
+            rgba(76,57,45,0.65) 30%,
+            rgba(76,57,45,0.82) 60%,
+            rgba(76,57,45,0.90) 100%
           )`,
         }}
       />
@@ -86,10 +86,10 @@ export default function AboutHero() {
         style={{
           background: `linear-gradient(
             to bottom,
-            rgba(15,10,7,0.55) 0%,
+            rgba(76,57,45,0.35) 0%,
             transparent 25%,
             transparent 70%,
-            rgba(15,10,7,0.6) 100%
+            rgba(76,57,45,0.50) 100%
           )`,
         }}
       />
@@ -103,14 +103,12 @@ export default function AboutHero() {
         style={{
           top: '52%',
           width: 'clamp(280px, 85vw, 480px)',
-          height: '75vh',
-          minHeight: '520px',
+          height: 'calc(100vh + 120px)',
           boxShadow: 'none',
           position: 'absolute',
           borderRadius: '0px',
-          overflow: 'hidden',
+          overflow: 'visible',
           marginBottom: '-1px',
-          clipPath: 'inset(0 0 15% 0)',
         }}
       >
         <img
@@ -119,14 +117,14 @@ export default function AboutHero() {
           className="select-none text-center"
           style={{
             position: 'absolute',
-            bottom: 0,
+            top: '-12%', // Shift upwards to compensate for the large transparent top padding in the PNG
             left: '50%',
-            transform: 'translateX(-50%)',
-            width: '110%',
-            height: 'auto',
-            maxWidth: 'none',
+            transform: 'translateX(-50%) scale(2.3)', // Scale up to match Shelby's visual hierarchy
+            transformOrigin: 'top center',
+            width: '100%',
+            height: '72vh',
             objectFit: 'contain',
-            objectPosition: 'bottom center',
+            objectPosition: 'center top',
             display: 'block',
           }}
           onError={(e) => {

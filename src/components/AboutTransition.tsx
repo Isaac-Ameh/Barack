@@ -16,42 +16,47 @@ export default function AboutTransition() {
     <section 
       className="relative w-full"
       style={{ 
-        marginTop: 0,
+        marginTop: '-2px', // Slight overlap to prevent sub-pixel cream gaps
         paddingTop: 0,
         position: 'relative',
         zIndex: 0,
       }}
     >
       {/* Top dark row — 3 panels matching Shelby's three-panel layout */}
-      <motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={{
-          visible: { transition: { staggerChildren: 0.1 } },
-        }}
+      <div
         className="grid grid-cols-[1.1fr_1fr_1.1fr] w-full"
         style={{ height: '320px', zIndex: 1, position: 'relative' }}
       >
-        {/* Left dark panel */}
-        <motion.div
-          variants={panelVariants}
-          style={{ backgroundColor: '#0f0a07' }}
+        {/* Left dark panel — matches AboutHero bottom gradient seamlessly */}
+        <div
+          style={{ 
+            backgroundColor: '#2a1e17',
+            backgroundImage: `linear-gradient(
+              105deg,
+              rgba(76,57,45,0.82) 0%,
+              rgba(76,57,45,0.90) 100%
+            )`
+          }}
         />
 
         {/* Center panel — NO IMAGE, just transparent */}
         {/* The hero card bleeds through here visually */}
-        <motion.div
-          variants={panelVariants}
+        <div
           style={{ backgroundColor: 'transparent' }}
         />
 
-        {/* Right dark panel */}
-        <motion.div
-          variants={panelVariants}
-          style={{ backgroundColor: '#0f0a07' }}
+        {/* Right dark panel — matches AboutHero bottom gradient seamlessly */}
+        <div
+          style={{ 
+            backgroundColor: '#2a1e17',
+            backgroundImage: `linear-gradient(
+              105deg,
+              rgba(76,57,45,0.82) 0%,
+              rgba(76,57,45,0.90) 100%
+            )`
+          }}
         />
-      </motion.div>
+      </div>
 
       {/* Bottom cream section with text */}
       <div 
